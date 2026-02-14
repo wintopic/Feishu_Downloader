@@ -1,0 +1,609 @@
+/**
+ * 飞书导出助手 - 弹窗样式
+ * 
+ * 设计理念：黑白简约 + 玉石光泽
+ * - 纯净的黑白配色
+ * - 柔和的玉石质感
+ * - 流畅的圆角过渡
+ * - 精致的微交互
+ */
+
+/* ==================== 基础变量 ==================== */
+:root {
+  /* 玉白色系 */
+  --jade-white: #FDFDFB;
+  --jade-light: #FAFAF8;
+  --jade-soft: #F5F5F3;
+  --jade-gray: #EAEAE8;
+  
+  /* 墨色系 */
+  --ink-black: #1A1A1A;
+  --ink-dark: #2D2D2D;
+  --ink-medium: #4A4A4A;
+  --ink-light: #6B6B6B;
+  --ink-pale: #999999;
+  
+  /* 文字色 */
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #8A8A8A;
+  
+  /* 玉石光泽渐变 */
+  --jade-glow: linear-gradient(
+    135deg,
+    rgba(253, 253, 251, 0.98) 0%,
+    rgba(250, 250, 248, 0.99) 25%,
+    rgba(245, 245, 243, 0.98) 50%,
+    rgba(250, 250, 248, 0.99) 75%,
+    rgba(253, 253, 251, 0.98) 100%
+  );
+  
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-jade: 
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    0 8px 24px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  
+  /* 圆角 */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  
+  /* 间距 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  
+  /* 过渡 */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.4s ease;
+}
+
+/* ==================== 基础样式 ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  background: var(--jade-white);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== 弹窗容器 ==================== */
+.popup-container {
+  position: relative;
+  width: 340px;
+  padding: var(--spacing-2xl);
+  background: var(--jade-glow);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-jade);
+  animation: jadeFadeIn 0.4s ease;
+}
+
+@keyframes jadeFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==================== 品牌标识区 ==================== */
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--jade-gray);
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink-black);
+  border-radius: var(--radius-md);
+  color: var(--jade-white);
+  flex-shrink: 0;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-normal);
+}
+
+.brand-icon:hover {
+  transform: scale(1.02);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.brand-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* ==================== 设置按钮 ==================== */
+.settings-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--jade-soft);
+  border: 1px solid var(--jade-gray);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.settings-btn:hover {
+  background: var(--jade-gray);
+  color: var(--text-primary);
+}
+
+.settings-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==================== 返回按钮 ==================== */
+.back-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--jade-soft);
+  border: 1px solid var(--jade-gray);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.back-btn:hover {
+  background: var(--jade-gray);
+  color: var(--text-primary);
+}
+
+.back-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==================== 设置内容区 ==================== */
+.settings-content {
+  margin-bottom: var(--spacing-xl);
+}
+
+.settings-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.settings-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 0.02em;
+}
+
+/* ==================== 设置底部按钮 ==================== */
+.settings-footer {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--jade-gray);
+  margin-top: var(--spacing-md);
+}
+
+.cancel-btn,
+.save-btn {
+  flex: 1;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  letter-spacing: 0.02em;
+}
+
+.cancel-btn {
+  background: var(--jade-soft);
+  color: var(--text-secondary);
+  border: 1px solid var(--jade-gray);
+}
+
+.cancel-btn:hover {
+  background: var(--jade-gray);
+  color: var(--text-primary);
+}
+
+.save-btn {
+  background: var(--ink-black);
+  color: var(--jade-white);
+}
+
+.save-btn:hover {
+  background: var(--ink-dark);
+}
+
+/* ==================== 主操作区 ==================== */
+.action-area {
+  margin-bottom: var(--spacing-xl);
+}
+
+.export-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: 16px 24px;
+  background: var(--ink-black);
+  color: var(--jade-white);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 2px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all var(--transition-normal);
+  letter-spacing: 0.02em;
+}
+
+.export-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  transition: left 0.6s ease;
+}
+
+.export-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 24px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.export-btn:hover::before {
+  left: 100%;
+}
+
+.export-btn:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.export-btn:disabled {
+  background: var(--jade-gray);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.export-btn:disabled::before {
+  display: none;
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-icon.spinning {
+  animation: smoothSpin 1.2s ease-in-out infinite;
+}
+
+@keyframes smoothSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-text {
+  position: relative;
+}
+
+.action-hint {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  font-size: 12px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.02em;
+}
+
+/* ==================== 快捷链接区 ==================== */
+.quick-links {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--jade-gray);
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+
+.link-item svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+  transition: all var(--transition-fast);
+}
+
+.link-item:hover {
+  color: var(--ink-black);
+  background: var(--jade-soft);
+}
+
+.link-item:hover svg {
+  opacity: 1;
+}
+
+/* ==================== 等待提示 ==================== */
+.waiting-tip {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background: var(--jade-light);
+  border: 1px solid var(--jade-gray);
+  border-radius: var(--radius-md);
+  text-align: center;
+  animation: jadeFadeIn 0.3s ease;
+}
+
+.waiting-icon {
+  font-size: 20px;
+  margin-bottom: var(--spacing-sm);
+  animation: breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: scale(0.98); 
+  }
+}
+
+.waiting-text {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.4;
+}
+
+.waiting-progress {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--jade-soft);
+  border-radius: var(--radius-xs);
+  display: inline-block;
+}
+
+/* ==================== Toast 提示 ==================== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  padding: 12px 20px;
+  background: var(--ink-black);
+  color: var(--jade-white);
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transition: all var(--transition-normal);
+  z-index: 10000;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast-error {
+  background: var(--ink-dark);
+}
+
+.toast-success {
+  background: var(--ink-medium);
+}
+
+/* ==================== 设置区域 ==================== */
+.settings-section {
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  background: var(--jade-light);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--jade-gray);
+}
+
+.settings-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.settings-title svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+}
+
+.export-mode-options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.mode-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--jade-white);
+  border: 2px solid var(--jade-gray);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mode-option:hover {
+  border-color: var(--ink-pale);
+  background: var(--jade-soft);
+}
+
+.mode-option.active {
+  border-color: var(--ink-black);
+  background: var(--jade-white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.mode-radio {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--jade-gray);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  transition: all var(--transition-fast);
+}
+
+.mode-option.active .mode-radio {
+  border-color: var(--ink-black);
+}
+
+.mode-radio::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--ink-black);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0);
+  transition: all var(--transition-fast);
+}
+
+.mode-option.active .mode-radio::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mode-info {
+  flex: 1;
+}
+
+.mode-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.mode-desc {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}

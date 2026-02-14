@@ -1,0 +1,91 @@
+/**
+ * 飞书导出助手 - 扩展配置文件 (Manifest V3)
+ * 
+ * 本文件定义了 Chrome 扩展的基本信息、权限和资源
+ * 采用 Manifest V3 标准（Chrome 88+ 支持）
+ */
+{
+  /* Manifest 版本，必须设置为 3 */
+  "manifest_version": 3,
+
+  /* 扩展名称 - 显示在扩展商店和工具栏提示中 */
+  "name": "飞书导出助手",
+
+  /* 扩展版本号 - 采用语义化版本 (SemVer) */
+  "version": "1.0.0",
+
+  /* 扩展描述 - 显示在扩展商店和扩展管理页面 */
+  "description": "一键导出飞书文档为 Markdown，支持图片本地化保存",
+
+  /* ==================== 扩展图标 ==================== */
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  /* ==================== 权限声明 ==================== */
+  "permissions": [
+    /* activeTab - 访问当前活动标签页（用户点击扩展图标时的标签页）
+       用于向飞书文档页面注入内容脚本 */
+    "activeTab",
+
+    /* scripting - 使用 chrome.scripting API
+       用于在飞书页面中执行脚本 */
+    "scripting",
+
+    /* storage - 使用 chrome.storage API
+       用于保存用户偏好设置 */
+    "storage",
+
+    /* downloads - 使用 chrome.downloads API
+       用于下载导出的文件和图片 */
+    "downloads"
+  ],
+
+  /* ==================== 主机权限 ==================== */
+  "host_permissions": [
+    /* 允许访问所有飞书域名下的页面
+       这是必需的，因为脚本需要与飞书文档交互 */
+    "*://*.feishu.cn/*",
+
+    /* 允许访问飞书图片 CDN
+       用于下载文档中的图片 */
+    "*://internal-api-drive-stream.feishu.cn/*"
+  ],
+
+  /* ==================== 操作按钮配置 ==================== */
+  "action": {
+    /* 点击扩展图标时弹出的 HTML 页面 */
+    "default_popup": "popup.html",
+
+    /* 鼠标悬停在扩展图标上时显示的提示文字 */
+    "default_title": "飞书导出助手"
+  },
+
+  /* ==================== 后台脚本配置 ==================== */
+  "background": {
+    /* Manifest V3 使用 Service Worker 作为后台脚本
+       用于处理文件下载等持久任务 */
+    "service_worker": "background.js"
+  },
+
+  /* ==================== 内容脚本配置 ==================== */
+  "content_scripts": [
+    {
+      /* 匹配规则 - 只在飞书文档页面注入 */
+      "matches": [
+        "*://*.feishu.cn/docx/*",  /* 飞书文档 */
+        "*://*.feishu.cn/wiki/*"    /* 飞书知识库 */
+      ],
+
+      /* 要注入的 JavaScript 文件 */
+      "js": ["content.js"],
+
+      /* 注入时机
+         document_idle: 页面空闲时注入（推荐）
+         其他选项: document_start, document_end */
+      "run_at": "document_idle"
+    }
+  ]
+}
